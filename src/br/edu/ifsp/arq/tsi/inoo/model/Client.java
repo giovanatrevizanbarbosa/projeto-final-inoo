@@ -4,6 +4,10 @@ public abstract class Client {
     protected int id;
     protected String name;
 
+    public Client(String name) {
+        this.name = name;
+    }
+
     public Client(int id, String name) {
         this.name = name;
     }

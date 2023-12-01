@@ -10,7 +10,18 @@ public class Car {
     private boolean hasAirConditioning;
     private double dailyRate;
     private boolean status;
-    
+
+    public Car(String model, String brand, int year, String licensePlate, int quantityDoors, boolean hasAirConditioning,
+            double dailyRate) {
+        this.model = model;
+        this.brand = brand;
+        this.year = year;
+        this.licensePlate = licensePlate;
+        this.quantityDoors = quantityDoors;
+        this.hasAirConditioning = hasAirConditioning;
+        this.dailyRate = dailyRate;
+    }
+
     public Car(int code, String model, String brand, int year, String licensePlate, int quantityDoors,
             boolean hasAirConditioning, double dailyRate) {
         this.code = code;

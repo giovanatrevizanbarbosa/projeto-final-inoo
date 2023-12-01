@@ -1,5 +1,4 @@
 package br.edu.ifsp.arq.tsi.inoo.model;
-
 import java.time.LocalDate;
 
 public class Rental {
@@ -11,7 +10,15 @@ public class Rental {
     private Client client;
     private Car car;
 
-    public Rental(int number, LocalDate dayRental, int numberDiaries, LocalDate maxDate, LocalDate returnDate,
+    public Rental(int numberDiaries, Client client, Car car) {
+        this.dayRental = LocalDate.now();
+        this.numberDiaries = numberDiaries;
+        this.maxDate = calcMaxDate();
+        this.client = client;
+        this.car = car;
+    }
+
+    public Rental(int number, LocalDate dayRental, int numberDiaries, String maxDate, String returnDate,
             Client client, Car car) {
         this.number = number;
         this.dayRental = LocalDate.now();
