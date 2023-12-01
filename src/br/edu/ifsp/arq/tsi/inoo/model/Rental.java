@@ -14,20 +14,20 @@ public class Rental {
         this.dayRental = LocalDate.now();
         this.numberDiaries = numberDiaries;
         this.maxDate = calcMaxDate();
-        this.client = client;
-        this.car = car;
-    }
-
-    public Rental(int number, LocalDate dayRental, int numberDiaries, String maxDate, String returnDate,
-            Client client, Car car) {
-        this.number = number;
-        this.dayRental = LocalDate.now();
-        this.numberDiaries = numberDiaries;
-        this.maxDate = calcMaxDate();
         this.returnDate = null;
         this.client = client;
         this.car = car;
     }
+
+    // public Rental(int number, LocalDate dayRental, int numberDiaries, String maxDate, String returnDate,
+    //         Client client, Car car) {
+    //     this.dayRental = LocalDate.now();
+    //     this.numberDiaries = numberDiaries;
+    //     this.maxDate = calcMaxDate();
+    //     this.returnDate = null;
+    //     this.client = client;
+    //     this.car = car;
+    // }
 
     private LocalDate calcMaxDate() {
         LocalDate maxDate = this.dayRental.plusDays(numberDiaries);

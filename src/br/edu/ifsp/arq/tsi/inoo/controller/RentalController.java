@@ -28,7 +28,9 @@ public class RentalController {
 
     public boolean rental(Rental rental) {
         if (rental != null) {
+            Car car = rental.getCar();
             rental.setNumber(nextCode++);
+            car.setStatus(false);
             rentals.add(rental);
             return true;
         }
@@ -51,8 +53,30 @@ public class RentalController {
         if (rental != null) {
             Period diff = Period.between(rental.getDayRental(), rental.getReturnDate());
             return car.getDailyRate() * diff.getDays();
+        }else{
+            return 0;
         }
-        return 0;
+    }
+
+    public String getClientRentals(Client client) {
+        String msg = "ALUGUÉIS DO CLIENTE " + client.getName() + "\n";
+        msg += "---------------------------------------------------\n";
+        for (Rental r : rentals) {
+            if (r.getClient().equals(client)) {
+                msg += "Aluguel: " + r.getNumber() + "\n";
+                msg += "Data da realização: " + r.getDayRental().format(dataTimeFormatter) + "\n";
+                msg += "Número de diárias: " + r.getNumberDiaries() + "\n";
+                msg += "Data máxima para devolução: " + r.getMaxDate().format(dataTimeFormatter) + "\n";
+                if(r.getReturnDate() != null){
+                    msg += "Data de devolução: " + r.getReturnDate().format(dataTimeFormatter) + "\n";
+                }else{
+                    msg += "Data de devolução: Ainda não devolvido\n";
+                }
+                msg += "Carro escolhido: " + r.getCar().getModel() + "\n";
+                msg += "---------------------------------------------------\n";
+            }
+        }
+        return msg;
     }
 
     public String generateReport() {
@@ -63,7 +87,11 @@ public class RentalController {
             msg += "Data da realização: " + r.getDayRental().format(dataTimeFormatter) + "\n";
             msg += "Número de diárias: " + r.getNumberDiaries() + "\n";
             msg += "Data máxima para devolução: " + r.getMaxDate().format(dataTimeFormatter) + "\n";
-            msg += "Data de devolução: " + r.getReturnDate().format(dataTimeFormatter) + "\n";
+            if(r.getReturnDate() != null){
+                msg += "Data de devolução: " + r.getReturnDate().format(dataTimeFormatter) + "\n";
+            }else{
+                msg += "Data de devolução: Ainda não devolvido\n";
+            }
             msg += "Cliente: " + r.getClient().getName() + "\n";
             msg += "Carro escolhido: " + r.getCar().getModel() + "\n";
             msg += "---------------------------------------------------\n";

@@ -11,6 +11,7 @@ public class CarController {
 
     private CarController() {
         cars = new ArrayList<>();
+        nextCode = 1;
     }
 
     public static synchronized CarController getInstance() {
@@ -40,5 +41,9 @@ public class CarController {
             }
         }
         return null;
+    }
+
+    public ArrayList<Car> getCars() {
+        return cars;
     }
 }

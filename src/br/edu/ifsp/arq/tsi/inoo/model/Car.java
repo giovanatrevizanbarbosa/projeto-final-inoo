@@ -20,18 +20,6 @@ public class Car {
         this.quantityDoors = quantityDoors;
         this.hasAirConditioning = hasAirConditioning;
         this.dailyRate = dailyRate;
-    }
-
-    public Car(int code, String model, String brand, int year, String licensePlate, int quantityDoors,
-            boolean hasAirConditioning, double dailyRate) {
-        this.code = code;
-        this.model = model;
-        this.brand = brand;
-        this.year = year;
-        this.licensePlate = licensePlate;
-        this.quantityDoors = quantityDoors;
-        this.hasAirConditioning = hasAirConditioning;
-        this.dailyRate = dailyRate;
         this.status = true;
     }
 
@@ -83,7 +71,7 @@ public class Car {
         this.quantityDoors = quantityDoors;
     }
 
-    public boolean isHasAirConditioning() {
+    public boolean hasAirConditioning() {
         return hasAirConditioning;
     }
 
@@ -99,7 +87,7 @@ public class Car {
         this.dailyRate = dailyRate;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 

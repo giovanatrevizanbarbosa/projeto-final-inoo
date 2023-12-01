@@ -3,8 +3,8 @@ package br.edu.ifsp.arq.tsi.inoo.model;
 public class ClientNaturalPerson extends Client {
     private String cpf;
 
-    public ClientNaturalPerson(int id, String name, String cpf) {
-        super(id, name);
+    public ClientNaturalPerson(String name, String cpf) {
+        super(name);
         this.cpf = cpf;
     }
 

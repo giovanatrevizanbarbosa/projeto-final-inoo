@@ -8,10 +8,6 @@ public abstract class Client {
         this.name = name;
     }
 
-    public Client(int id, String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return name;
     }

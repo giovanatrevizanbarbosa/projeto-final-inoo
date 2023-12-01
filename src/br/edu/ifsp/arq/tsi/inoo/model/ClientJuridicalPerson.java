@@ -4,8 +4,8 @@ public class ClientJuridicalPerson extends Client {
     private String cnpj;
     private String corporateReason;
 
-    public ClientJuridicalPerson(int id, String name, String cnpj, String corporateReason) {
-        super(id, name);
+    public ClientJuridicalPerson(String name, String cnpj, String corporateReason) {
+        super(name);
         this.cnpj = cnpj;
         this.corporateReason = corporateReason;
     }

@@ -1,7 +1,8 @@
 package br.edu.ifsp.arq.tsi.inoo.controller;
 
 import java.util.ArrayList;
-import br.edu.ifsp.arq.tsi.inoo.model.Client;
+import br.edu.ifsp.arq.tsi.inoo.model.*;
+import br.edu.ifsp.arq.tsi.inoo.controller.*;
 
 public class ClientController {
     private static ClientController instance;
@@ -11,6 +12,7 @@ public class ClientController {
 
     private ClientController() {
         clients = new ArrayList<>();
+        nextId = 1;
     }
 
     public static synchronized ClientController getInstance() {
@@ -20,8 +22,29 @@ public class ClientController {
         return instance;
     }
 
+    public boolean validate(Client client) {
+        if (client instanceof ClientNaturalPerson) {
+            for (Client c : clients) {
+                if (c instanceof ClientNaturalPerson) {
+                    if (((ClientNaturalPerson) c).getCpf().equals(((ClientNaturalPerson) client).getCpf())) {
+                        return false;
+                    }
+                }
+            }
+        } else if (client instanceof ClientJuridicalPerson) {
+            for (Client c : clients) {
+                if (c instanceof ClientJuridicalPerson) {
+                    if (((ClientJuridicalPerson) c).getCnpj().equals(((ClientJuridicalPerson) client).getCnpj())) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     public boolean save (Client client) {
-        if (client != null) {
+        if (client != null && validate(client)){
             client.setId(nextId++);
             return true;
         }
@@ -40,4 +63,10 @@ public class ClientController {
         }
         return null;
     }
+
+    public ArrayList<Client> getClients() {
+        return clients;
+    }
+
+
 }
