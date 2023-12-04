@@ -19,16 +19,6 @@ public class Rental {
         this.car = car;
     }
 
-    // public Rental(int number, LocalDate dayRental, int numberDiaries, String maxDate, String returnDate,
-    //         Client client, Car car) {
-    //     this.dayRental = LocalDate.now();
-    //     this.numberDiaries = numberDiaries;
-    //     this.maxDate = calcMaxDate();
-    //     this.returnDate = null;
-    //     this.client = client;
-    //     this.car = car;
-    // }
-
     private LocalDate calcMaxDate() {
         LocalDate maxDate = this.dayRental.plusDays(numberDiaries);
         return maxDate;

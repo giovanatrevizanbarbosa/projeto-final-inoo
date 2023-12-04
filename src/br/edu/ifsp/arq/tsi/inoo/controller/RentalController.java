@@ -99,6 +99,15 @@ public class RentalController {
         return msg;
     }
 
+    public Rental findByCarCode(int carCode) {
+        for (Rental r : rentals) {
+            if (r.getCar().getCode() == carCode) {
+                return r;
+            }
+        }
+        return null;
+    }
+    
     public ArrayList<Rental> getRentals() {
         return rentals;
     }

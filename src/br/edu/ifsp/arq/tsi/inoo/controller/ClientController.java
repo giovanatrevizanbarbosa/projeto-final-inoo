@@ -2,7 +2,6 @@ package br.edu.ifsp.arq.tsi.inoo.controller;
 
 import java.util.ArrayList;
 import br.edu.ifsp.arq.tsi.inoo.model.*;
-import br.edu.ifsp.arq.tsi.inoo.controller.*;
 
 public class ClientController {
     private static ClientController instance;
@@ -43,7 +42,7 @@ public class ClientController {
         return true;
     }
 
-    public boolean save (Client client) {
+    public boolean save(Client client) {
         if (client != null && validate(client)){
             client.setId(nextId++);
             return true;
