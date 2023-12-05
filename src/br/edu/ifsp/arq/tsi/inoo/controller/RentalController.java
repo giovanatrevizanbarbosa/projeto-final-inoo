@@ -80,16 +80,16 @@ public class RentalController {
     }
 
     public String generateReport() {
-        String msg = "RELATÓRIO DE ALUGUÉIS\n";
+        String msg = "RELATÓRIO DE ALUGUÉIS: " + getTotalRentals() + "\n";
         msg += "---------------------------------------------------\n";
         for (Rental r : rentals) {
             msg += "Aluguel: " + r.getNumber() + "\n";
             msg += "Data da realização: " + r.getDayRental().format(dataTimeFormatter) + "\n";
             msg += "Número de diárias: " + r.getNumberDiaries() + "\n";
             msg += "Data máxima para devolução: " + r.getMaxDate().format(dataTimeFormatter) + "\n";
-            if(r.getReturnDate() != null){
+            if (r.getReturnDate() != null) {
                 msg += "Data de devolução: " + r.getReturnDate().format(dataTimeFormatter) + "\n";
-            }else{
+            } else {
                 msg += "Data de devolução: Ainda não devolvido\n";
             }
             msg += "Cliente: " + r.getClient().getName() + "\n";
@@ -98,6 +98,7 @@ public class RentalController {
         }
         return msg;
     }
+    
 
     public Rental findByCarCode(int carCode) {
         for (Rental r : rentals) {
@@ -110,5 +111,9 @@ public class RentalController {
     
     public ArrayList<Rental> getRentals() {
         return rentals;
+    }
+
+    public int getTotalRentals() {
+        return getRentals().size();
     }
 }

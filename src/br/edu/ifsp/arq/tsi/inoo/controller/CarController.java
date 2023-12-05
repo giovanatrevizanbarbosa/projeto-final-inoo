@@ -46,4 +46,26 @@ public class CarController {
     public ArrayList<Car> getCars() {
         return cars;
     }
+
+    public int getTotalCars() {
+        return getCars().size();
+    }
+
+    public String generateReport() {
+        String msg = "RELATÓRIO DE CARROS: " + getTotalCars() + "\n";
+        msg += "---------------------------------------------------\n";
+        for (Car c : cars) {
+            msg += "Carro: " + c.getCode() + "\n";
+            msg += "Modelo: " + c.getModel() + "\n";
+            msg += "Marca: " + c.getBrand() + "\n";
+            msg += "Ano: " + c.getYear() + "\n";
+            msg += "Placa: " + c.getLicensePlate() + "\n";
+            msg += "Número de Portas: " + c.getQuantityDoors() + "\n";
+            msg += "Ar Condicionado: " + (c.hasAirConditioning() ? "Sim" : "Não") + "\n";
+            msg += "Valor da Diária: " + c.getDailyRate() + "\n";
+            msg += "Status: " + (c.getStatus() ? "Disponível" : "Alugado") + "\n";
+            msg += "---------------------------------------------------\n";
+        }
+        return msg;
+    }
 }

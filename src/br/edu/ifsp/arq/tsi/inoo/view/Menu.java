@@ -38,7 +38,7 @@ public class Menu {
                     int year = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano do carro"));
                     String plate = JOptionPane.showInputDialog("Digite a placa do carro");
                     int numberDoors = Integer.parseInt(JOptionPane.showInputDialog("Digite o número de portas do carro"));
-                    boolean hasAirConditioning = JOptionPane.showInputDialog("O carro possui ar condicionado?").equals("Sim") ? true : false;
+                    boolean hasAirConditioning = JOptionPane.showInputDialog("O carro possui ar condicionado?").equalsIgnoreCase("Sim") ? true : false;
                     double dailyRate = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor da diária do carro"));
 
                     Car car = new Car(model, brand, year, plate, numberDoors, hasAirConditioning, dailyRate);

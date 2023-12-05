@@ -1,7 +1,9 @@
 package br.edu.ifsp.arq.tsi.inoo.controller;
 
 import java.util.ArrayList;
-import br.edu.ifsp.arq.tsi.inoo.model.*;
+import br.edu.ifsp.arq.tsi.inoo.model.Client;
+import br.edu.ifsp.arq.tsi.inoo.model.ClientJuridicalPerson;
+import br.edu.ifsp.arq.tsi.inoo.model.ClientNaturalPerson;
 
 public class ClientController {
     private static ClientController instance;
@@ -45,6 +47,7 @@ public class ClientController {
     public boolean save(Client client) {
         if (client != null && validate(client)){
             client.setId(nextId++);
+            clients.add(client);
             return true;
         }
         return false;
@@ -65,5 +68,29 @@ public class ClientController {
 
     public ArrayList<Client> getClients() {
         return clients;
+    }
+
+    public int getTotalClients() {
+        return getClients().size();
+    }
+
+    public String generateReport() {
+        String msg = "RELATÓRIO DE CLIENTES: " + getTotalClients() + "\n";
+        msg += "---------------------------------------------------\n";
+        for (Client c : clients) {
+            msg += "Cliente: " + c.getId() + "\n";
+            msg += "Nome: " + c.getName() + "\n";
+    
+            if (c instanceof ClientNaturalPerson) {
+                msg += "Documento (CPF): " + ((ClientNaturalPerson) c).getCpf() + "\n";
+            } else if (c instanceof ClientJuridicalPerson) {
+                ClientJuridicalPerson juridicalPerson = (ClientJuridicalPerson) c;
+                msg += "Documento (CNPJ): " + juridicalPerson.getCnpj() + "\n";
+                msg += "Razão Social: " + juridicalPerson.getCorporateReason() + "\n";
+            }
+
+            msg += "---------------------------------------------------\n";
+        }
+        return msg;
     }
 }
