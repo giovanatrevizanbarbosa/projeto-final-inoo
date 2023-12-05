@@ -66,6 +66,4 @@ public class ClientController {
     public ArrayList<Client> getClients() {
         return clients;
     }
-
-
 }

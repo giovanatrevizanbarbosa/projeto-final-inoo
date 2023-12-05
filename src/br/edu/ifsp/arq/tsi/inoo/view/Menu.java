@@ -5,14 +5,13 @@ import javax.swing.JOptionPane;
 import br.edu.ifsp.arq.tsi.inoo.controller.*;
 import br.edu.ifsp.arq.tsi.inoo.model.*;
 
-
 public class Menu {
     public static void main(String[] args) {
         RentalController rentalController = RentalController.getInstance();
         ClientController clientController = ClientController.getInstance();
         CarController carController = CarController.getInstance();
 
-        int option;
+        int option, confirm;
 
         do {
             String[] options = {"Inserir Cliente", "Inserir Carro", "Realizar Locação", "Realizar Devolução", "Gerar Relatório", "Sair"};
@@ -22,11 +21,15 @@ public class Menu {
                 case 0:
                     String name = JOptionPane.showInputDialog("Digite o nome do cliente:");
                     String document = JOptionPane.showInputDialog("Digite o CPF ou CNPJ do cliente:");
+                    confirm = JOptionPane.showConfirmDialog(null, "\nDeseja confirmar o cadastro?" 
+                                                                + "\nCliente inserido:\nNome: " + name 
+                                                                + "\nCPF/CNPJ: " + document, "Cadastro de Cliente", JOptionPane.YES_NO_OPTION);
 
                     Client client = new ClientNaturalPerson(name, document);
-
-                    if (clientController.save(client)) {
-                        JOptionPane.showMessageDialog(null, "Cliente inserido:\nNome: " + name + "\nCPF/CNPJ: " + document);
+                    if(confirm == 0 && clientController.save(client)){
+                        JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Cadastro cancelado");
                     }
                     break;
                 case 1:
@@ -40,10 +43,20 @@ public class Menu {
 
                     Car car = new Car(model, brand, year, plate, numberDoors, hasAirConditioning, dailyRate);
 
-                    if(carController.save(car)){
-                        JOptionPane.showMessageDialog(null, "Carro cadastrado com sucesso!");
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Erro ao cadastrar carro!");
+                    String hasAir = hasAirConditioning ? "Possui" : "Não possui";
+                    confirm = JOptionPane.showConfirmDialog(null, "\nDeseja confirmar o cadastro?"
+                                                                + "\nModelo: " + model 
+                                                                + "\nMarca: " + brand 
+                                                                + "\nAno: " + year 
+                                                                + "\nPlaca: " + plate 
+                                                                + "\nNúmero de portas: " + numberDoors 
+                                                                + "\nAr condicionado: " + hasAir
+                                                                + "\nValor da diária: " + dailyRate, "Confirmação do cadastro", JOptionPane.YES_NO_OPTION);
+
+                    if (carController.save(car) && confirm == 0) {
+                        JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Cadastro cancelado.");
                     }
                     break;
                 case 2:
@@ -70,6 +83,7 @@ public class Menu {
                     break;
                 case 4:
                     String report = rentalController.generateReport();
+
                     JOptionPane.showMessageDialog(null, report);
                     break;
                 case 5:
@@ -79,7 +93,6 @@ public class Menu {
                     JOptionPane.showMessageDialog(null, "Opção inválida. Tente novamente.");
                     break;
             }
-
         } while (option != 5);
     }
 }
