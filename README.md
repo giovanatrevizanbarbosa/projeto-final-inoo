@@ -1,2 +1,2 @@
-# projeto-final-inoo
-Projeto em Java simulando sistema de locação de carros, realizado em dupla
+# Projeto Locação de Carros
+Projeto em Java simulando sistema de locação de carros, realizado por Natan e Giovana
