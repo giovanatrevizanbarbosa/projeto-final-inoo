@@ -29,10 +29,12 @@ public class RentalController {
     public boolean rental(Rental rental) {
         if (rental != null) {
             Car car = rental.getCar();
-            rental.setNumber(nextCode++);
-            car.setStatus(false);
-            rentals.add(rental);
-            return true;
+            if(car.getStatus() == true){
+                rental.setNumber(nextCode++);
+                car.setStatus(false);
+                rentals.add(rental);
+                return true;
+            }
         }
         return false;
     }
